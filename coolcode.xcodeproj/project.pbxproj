@@ -20,6 +20,10 @@
 		51FBE4DA1D23B3960051F486 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 51FBE4D91D23B3960051F486 /* main.m */; };
 		51FBE4E51D23B3960051F486 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51FBE4E41D23B3960051F486 /* Assets.xcassets */; };
 		51FBE4E81D23B3960051F486 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51FBE4E61D23B3960051F486 /* LaunchScreen.storyboard */; };
+		A3FC3C721D24C981006C480E /* CCLoginThirdPartyView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FC3C711D24C981006C480E /* CCLoginThirdPartyView.m */; };
+		A3FC3C751D24E321006C480E /* CCLoginLogoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FC3C741D24E321006C480E /* CCLoginLogoView.m */; };
+		A3FC3C781D24EEE4006C480E /* CCLoginMobileView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FC3C771D24EEE4006C480E /* CCLoginMobileView.m */; };
+		A3FC3C7B1D250D7C006C480E /* CCLoginMobileInputField.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FC3C7A1D250D7C006C480E /* CCLoginMobileInputField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +52,14 @@
 		51FBE4E91D23B3960051F486 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		51FBE4EF1D23B9370051F486 /* Profile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
 		5658E03D6AEC423AE32AA2AD /* Pods_coolcode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_coolcode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3FC3C701D24C981006C480E /* CCLoginThirdPartyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCLoginThirdPartyView.h; path = View/CCLoginThirdPartyView.h; sourceTree = "<group>"; };
+		A3FC3C711D24C981006C480E /* CCLoginThirdPartyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCLoginThirdPartyView.m; path = View/CCLoginThirdPartyView.m; sourceTree = "<group>"; };
+		A3FC3C731D24E321006C480E /* CCLoginLogoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCLoginLogoView.h; path = View/CCLoginLogoView.h; sourceTree = "<group>"; };
+		A3FC3C741D24E321006C480E /* CCLoginLogoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCLoginLogoView.m; path = View/CCLoginLogoView.m; sourceTree = "<group>"; };
+		A3FC3C761D24EEE4006C480E /* CCLoginMobileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCLoginMobileView.h; path = View/CCLoginMobileView.h; sourceTree = "<group>"; };
+		A3FC3C771D24EEE4006C480E /* CCLoginMobileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCLoginMobileView.m; path = View/CCLoginMobileView.m; sourceTree = "<group>"; };
+		A3FC3C791D250D7C006C480E /* CCLoginMobileInputField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCLoginMobileInputField.h; path = View/CCLoginMobileInputField.h; sourceTree = "<group>"; };
+		A3FC3C7A1D250D7C006C480E /* CCLoginMobileInputField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCLoginMobileInputField.m; path = View/CCLoginMobileInputField.m; sourceTree = "<group>"; };
 		D6176837EFB6B4C554CC9897 /* Pods-coolcode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coolcode.debug.xcconfig"; path = "Pods/Target Support Files/Pods-coolcode/Pods-coolcode.debug.xcconfig"; sourceTree = "<group>"; };
 		E8DE751824EC16E6C9894BD6 /* Pods-coolcode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coolcode.release.xcconfig"; path = "Pods/Target Support Files/Pods-coolcode/Pods-coolcode.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,6 +97,7 @@
 		22B961D1DC9CC378BBE1F3B2 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				A3FC3C6F1D24C944006C480E /* View */,
 				22B96F986EBC62E0A1D7BE44 /* CCLoginViewController.m */,
 				22B96EF5DC275895924A0448 /* CCLoginViewController.h */,
 			);
@@ -199,6 +212,21 @@
 				51FBE4EF1D23B9370051F486 /* Profile.h */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A3FC3C6F1D24C944006C480E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A3FC3C701D24C981006C480E /* CCLoginThirdPartyView.h */,
+				A3FC3C711D24C981006C480E /* CCLoginThirdPartyView.m */,
+				A3FC3C731D24E321006C480E /* CCLoginLogoView.h */,
+				A3FC3C741D24E321006C480E /* CCLoginLogoView.m */,
+				A3FC3C761D24EEE4006C480E /* CCLoginMobileView.h */,
+				A3FC3C771D24EEE4006C480E /* CCLoginMobileView.m */,
+				A3FC3C791D250D7C006C480E /* CCLoginMobileInputField.h */,
+				A3FC3C7A1D250D7C006C480E /* CCLoginMobileInputField.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		F8D208F516C4379B452CBD68 /* Frameworks */ = {
@@ -329,9 +357,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3FC3C721D24C981006C480E /* CCLoginThirdPartyView.m in Sources */,
 				51FBE4DA1D23B3960051F486 /* main.m in Sources */,
 				22B965C03EB949803DB4AAEE /* AppDelegate.m in Sources */,
+				A3FC3C7B1D250D7C006C480E /* CCLoginMobileInputField.m in Sources */,
 				22B966E7F0B1AEE915ADA99E /* CCMainViewController.m in Sources */,
+				A3FC3C781D24EEE4006C480E /* CCLoginMobileView.m in Sources */,
 				22B9656436727D3FC51F77AD /* CCView.m in Sources */,
 				22B96E2656AEFD1A33836C16 /* CCViewController.m in Sources */,
 				22B9633D05953BFFC4519401 /* CCTableViewCell.m in Sources */,
@@ -339,6 +370,7 @@
 				22B96A25BF967B8B2C878DBD /* CCModel.m in Sources */,
 				22B963A1D880B7137FEED1AE /* UIColor+CC.m in Sources */,
 				22B9604B1BB88D4DEFE414B0 /* CCNetworkClient.m in Sources */,
+				A3FC3C751D24E321006C480E /* CCLoginLogoView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
