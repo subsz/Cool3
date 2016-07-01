@@ -47,31 +47,31 @@
 - (void)updateConstraints {
   
   [self.countryCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.leading.mas_equalTo(self.mas_leading).offset(-1);
-    make.top.mas_equalTo(self.mas_top);
+    make.leading.mas_equalTo(self).offset(-1);
+    make.top.mas_equalTo(self);
     make.height.equalTo(@70);
     make.width.equalTo(@100);
   }];
   
   [self.phoneNumField mas_makeConstraints:^(MASConstraintMaker *make) {
     make.leading.mas_equalTo(self.countryCodeBtn.mas_trailing).offset(-1);
-    make.trailing.mas_equalTo(self.mas_trailing).offset(1);
-    make.top.mas_equalTo(self.countryCodeBtn.mas_top);
-    make.bottom.mas_equalTo(self.countryCodeBtn.mas_bottom);
+    make.trailing.mas_equalTo(self).offset(1);
+    make.top.mas_equalTo(self.countryCodeBtn);
+    make.bottom.mas_equalTo(self.countryCodeBtn);
   }];
   
   [self.mainLoginBtnContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.leading.mas_equalTo(self.mas_leading);
-    make.trailing.mas_equalTo(self.mas_trailing);
+    make.leading.mas_equalTo(self);
+    make.trailing.mas_equalTo(self);
     make.top.mas_equalTo(self.countryCodeBtn.mas_bottom);
-    make.bottom.mas_equalTo(self.mas_bottom);
+    make.bottom.mas_equalTo(self);
   }];
   
   [self.mainLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
     make.height.equalTo(@50);
-    make.leading.mas_equalTo(self.mainLoginBtnContainerView.mas_leading).offset(55);
-    make.trailing.mas_equalTo(self.mainLoginBtnContainerView.mas_trailing).offset(-55);
-    make.centerY.mas_equalTo(self.mainLoginBtnContainerView.mas_centerY);
+    make.leading.mas_equalTo(self.mainLoginBtnContainerView).offset(55);
+    make.trailing.mas_equalTo(self.mainLoginBtnContainerView).offset(-55);
+    make.centerY.mas_equalTo(self.mainLoginBtnContainerView);
   }];
   
   [super updateConstraints];
@@ -135,7 +135,7 @@
 #pragma mark - Events
 
 - (void)phoneNumFieldEditingChanged {
-  if (self.phoneNumField.text.length > 0) {
+  if (self.phoneNumField.text.length == 11) {
     self.mainLoginBtn.userInteractionEnabled = YES;
     [self.mainLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.mainLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];

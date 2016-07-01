@@ -52,35 +52,35 @@
 - (void)updateConstraints {
   
   [self.contentContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.leading.mas_equalTo(self.mas_leading);
-    make.trailing.mas_equalTo(self.mas_trailing);
-    make.centerY.mas_equalTo(self.mas_centerY);
+    make.leading.mas_equalTo(self);
+    make.trailing.mas_equalTo(self);
+    make.centerY.mas_equalTo(self);
     make.height.equalTo(@100.5);
   }];
   
   [self.textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.centerX.mas_equalTo(self.contentContainerView.mas_centerX);
-    make.top.mas_equalTo(self.contentContainerView.mas_top);
+    make.centerX.mas_equalTo(self.contentContainerView);
+    make.top.mas_equalTo(self.contentContainerView);
   }];
   
   [self.wechatBtn mas_makeConstraints:^(MASConstraintMaker *make) {
     make.right.mas_equalTo(self.qqBtn.mas_left).offset(-20);
-    make.centerY.mas_equalTo(self.qqBtn.mas_centerY);
+    make.centerY.mas_equalTo(self.qqBtn);
   }];
   
   [self.qqBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.centerX.mas_equalTo(self.contentContainerView.mas_centerX).offset(-40);
+    make.centerX.mas_equalTo(self.contentContainerView).offset(-40);
     make.top.mas_equalTo(self.textLabel.mas_bottom).offset(20).priority(250);
   }];
   
   [self.facebookBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.centerX.mas_equalTo(self.contentContainerView.mas_centerX).offset(40);
-    make.centerY.mas_equalTo(self.qqBtn.mas_centerY);
+    make.centerX.mas_equalTo(self.contentContainerView).offset(40);
+    make.centerY.mas_equalTo(self.qqBtn);
   }];
   
   [self.twitterBtn mas_makeConstraints:^(MASConstraintMaker *make) {
     make.left.mas_equalTo(self.facebookBtn.mas_right).offset(20);
-    make.centerY.mas_equalTo(self.qqBtn.mas_centerY);
+    make.centerY.mas_equalTo(self.qqBtn);
   }];
   
   [super updateConstraints];
@@ -112,6 +112,7 @@
     _wechatBtn.layer.cornerRadius = 60/2;
     _wechatBtn.clipsToBounds = YES;
     [_wechatBtn setImage:[UIImage imageNamed:@"ic_social_wechat.pdf"] forState:UIControlStateNormal];
+    [_wechatBtn addTarget:self action:@selector(wechatBtnClicked) forControlEvents:UIControlEventTouchUpInside];
   }
   return _wechatBtn;
 }
@@ -122,6 +123,7 @@
     _qqBtn.layer.cornerRadius = 60/2;
     _qqBtn.clipsToBounds = YES;
     [_qqBtn setImage:[UIImage imageNamed:@"ic_social_qq.pdf"] forState:UIControlStateNormal];
+    [_qqBtn addTarget:self action:@selector(qqBtnClicked) forControlEvents:UIControlEventTouchUpInside];
   }
   return _qqBtn;
 }
@@ -132,6 +134,7 @@
     _facebookBtn.layer.cornerRadius = 60/2;
     _facebookBtn.clipsToBounds = YES;
     [_facebookBtn setImage:[UIImage imageNamed:@"ic_social_facebook.pdf"] forState:UIControlStateNormal];
+    [_facebookBtn addTarget:self action:@selector(facebookBtnClicked) forControlEvents:UIControlEventTouchUpInside];
   }
   return _facebookBtn;
 }
@@ -142,9 +145,35 @@
     _twitterBtn.layer.cornerRadius = 60/2;
     _twitterBtn.clipsToBounds = YES;
     [_twitterBtn setImage:[UIImage imageNamed:@"ic_social_twitter.pdf"] forState:UIControlStateNormal];
+    [_twitterBtn addTarget:self action:@selector(twitterBtnClicked) forControlEvents:UIControlEventTouchUpInside];
   }
   return _twitterBtn;
 }
 
+#pragma mark - Events
+
+- (void)wechatBtnClicked {
+  if (self.delegate && [self.delegate respondsToSelector:@selector(thirdPartyLoginButtonClicked:)]) {
+    [self.delegate thirdPartyLoginButtonClicked:CCLoginThirdPartyButtonTypeWechat];
+  }
+}
+
+- (void)qqBtnClicked {
+  if (self.delegate && [self.delegate respondsToSelector:@selector(thirdPartyLoginButtonClicked:)]) {
+    [self.delegate thirdPartyLoginButtonClicked:CCLoginThirdPartyButtonTypeQQ];
+  }
+}
+
+- (void)facebookBtnClicked {
+  if (self.delegate && [self.delegate respondsToSelector:@selector(thirdPartyLoginButtonClicked:)]) {
+    [self.delegate thirdPartyLoginButtonClicked:CCLoginThirdPartyButtonTypeFacebook];
+  }
+}
+
+- (void)twitterBtnClicked {
+  if (self.delegate && [self.delegate respondsToSelector:@selector(thirdPartyLoginButtonClicked:)]) {
+    [self.delegate thirdPartyLoginButtonClicked:CCLoginThirdPartyButtonTypeTwitter];
+  }
+}
 
 @end

@@ -13,9 +13,9 @@
 @required
 
 /**
- 登陆页登录按钮被点击
- @param mainLoginBtn 登录按钮
- @param phoneNum 用户输入的手机号码
+ * 登陆页登录按钮被点击
+ * @param mainLoginBtn 登录按钮
+ * @param phoneNum 用户输入的手机号码
  */
 - (void)mainLoginBtnClicked:(UIButton *)mainLoginBtn phoneNum:(NSString *)phoneNum;
 
@@ -23,6 +23,6 @@
 
 @interface CCLoginMobileView : UIView
 
-@property (nonatomic, strong) id<CCLoginMobileViewDelegate> delegate;
+@property (nonatomic, weak) id<CCLoginMobileViewDelegate> delegate;
 
 @end

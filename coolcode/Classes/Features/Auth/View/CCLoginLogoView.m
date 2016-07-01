@@ -34,6 +34,7 @@
   if (self) {
     [self setupView];
     self.backgroundColor = [UIColor whiteColor];
+    self.translatesAutoresizingMaskIntoConstraints = NO;
   }
   return self;
 }
@@ -49,34 +50,34 @@
 - (void)updateConstraints {
   
   [self.logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.centerX.mas_equalTo(self.mas_centerX);
-    make.top.mas_equalTo(self.mas_top).offset(50).priority(250);
-    make.top.mas_greaterThanOrEqualTo(self.mas_top).offset(10);
+    make.centerX.mas_equalTo(self);
+    make.top.mas_equalTo(self).offset(50).priority(250);
+    make.top.mas_greaterThanOrEqualTo(self).offset(10);
     make.size.mas_equalTo(CGSizeMake(100, 90));
   }];
   
   [self.appNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.centerX.mas_equalTo(self.mas_centerX);
+    make.centerX.mas_equalTo(self);
     make.top.mas_equalTo(self.logoImageView.mas_bottom).offset(20).priority(250);
     make.top.mas_greaterThanOrEqualTo(self.logoImageView.mas_bottom).offset(10);
   }];
   
   [self.noticeContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.centerX.mas_equalTo(self.mas_centerX);
+    make.centerX.mas_equalTo(self);
     make.height.equalTo(@16);
-    make.bottom.mas_equalTo(self.mas_bottom).offset(-13);
-    make.top.mas_greaterThanOrEqualTo(self.appNameLabel.mas_bottom).offset(20).priority(500);
+    make.bottom.mas_equalTo(self).offset(-13);
+    make.top.mas_greaterThanOrEqualTo(self.appNameLabel.mas_bottom).offset(10);
   }];
   
   [self.agreeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.centerY.mas_equalTo(self.noticeContainerView.mas_centerY);
-    make.leading.mas_equalTo(self.noticeContainerView.mas_leading);
+    make.centerY.mas_equalTo(self.noticeContainerView);
+    make.leading.mas_equalTo(self.noticeContainerView);
   }];
   
   [self.declarationBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.centerY.mas_equalTo(self.noticeContainerView.mas_centerY);
+    make.centerY.mas_equalTo(self.noticeContainerView);
     make.leading.mas_equalTo(self.agreeLabel.mas_trailing);
-    make.trailing.mas_equalTo(self.noticeContainerView.mas_trailing);
+    make.trailing.mas_equalTo(self.noticeContainerView);
   }];
   
   [super updateConstraints];
