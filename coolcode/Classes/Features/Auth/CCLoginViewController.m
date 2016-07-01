@@ -2,26 +2,18 @@
 // Created by 杨玉刚 on 6/29/16.
 // Copyright (c) 2016 奇迹科技. All rights reserved.
 //
-#import <PromiseKit/AnyPromise.h>
+
 #import "CCLoginViewController.h"
 #import "CCLoginThirdPartyView.h"
 #import "CCLoginMobileView.h"
 #import "CCLoginLogoView.h"
-#import "UIColor+CC.h"
-#import "Masonry.h"
-#import <StarterKit/SKToastUtil.h>
-#import <StarterKit/SKErrorResponseModel.h>
-#import <Overcoat/Overcoat.h>
 #import "CCNetworkClient.h"
-#import <MBProgressHUD/MBProgressHUD.h>
-
 
 @interface CCLoginViewController () <CCLoginMobileViewDelegate, CCLoginThirdPartyViewDelegate>
-
+@property (nonatomic, assign) BOOL didSetupConstraints;
 @property (nonatomic, strong) CCLoginLogoView *logoView;
 @property (nonatomic, strong) CCLoginMobileView *mobileView;
 @property (nonatomic, strong) CCLoginThirdPartyView *thirdPartyView;
-
 @property (nonatomic, strong) SKHTTPSessionManager *sessionManager;
 
 @end
@@ -30,14 +22,51 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
+  self.view.backgroundColor = [UIColor whiteColor];
+  [self setupViews];
+  // 告诉 self.view 检测约束是否需要更新，如果需要更新则执行 updateViewConstraints 方法
+  [self.view updateConstraintsIfNeeded];
+  [self.view setNeedsUpdateConstraints];
+}
+
+- (void)setupViews {
   [self.view addSubview:self.logoView];
   [self.view addSubview:self.mobileView];
   [self.view addSubview:self.thirdPartyView];
-  
-  self.view.backgroundColor = [UIColor whiteColor];
-  
-  [self.view setNeedsUpdateConstraints];
+}
+
+- (void)updateViewConstraints {
+  // 增加 BOOL 类型的 didSetupConstraints，保证调用此方法事只更新一次约束。避免重复设置相同的约束。
+  if (!self.didSetupConstraints) {
+    self.didSetupConstraints = YES;
+    UIView *superView = self.view;
+    
+    [self.logoView mas_makeConstraints:^(MASConstraintMaker *make) {
+      make.top.mas_equalTo(superView);
+      make.leading.mas_equalTo(superView);
+      make.trailing.mas_equalTo(superView);
+      make.height.equalTo(@250).priority(250);
+      make.height.mas_greaterThanOrEqualTo(superView).multipliedBy(0.4).priority(750);
+    }];
+    
+    [self.mobileView mas_makeConstraints:^(MASConstraintMaker *make) {
+      make.top.mas_equalTo(self.logoView.mas_bottom);
+      make.leading.mas_equalTo(superView);
+      make.trailing.mas_equalTo(superView);
+      make.bottom.mas_equalTo(self.thirdPartyView.mas_top);
+      make.height.mas_greaterThanOrEqualTo(superView).multipliedBy(0.3).priority(750);
+    }];
+    
+    [self.thirdPartyView mas_makeConstraints:^(MASConstraintMaker *make) {
+      make.bottom.mas_equalTo(self.mas_bottomLayoutGuide);
+      make.leading.mas_equalTo(superView);
+      make.trailing.mas_equalTo(superView);
+      make.top.mas_equalTo(self.mobileView.mas_bottom);
+      make.height.mas_greaterThanOrEqualTo(@120);
+      make.height.mas_greaterThanOrEqualTo(superView).multipliedBy(0.3).priority(750);
+    }];
+  }
+  [super updateViewConstraints];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -54,37 +83,6 @@
   //取消监听键盘弹入弹出事件
   [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
   [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-}
-
-- (void)updateViewConstraints {
-  UIView *superView = self.view;
-  
-  [self.logoView mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.top.mas_equalTo(superView);
-    make.leading.mas_equalTo(superView);
-    make.trailing.mas_equalTo(superView);
-    make.height.equalTo(@250).priority(250);
-    make.height.mas_greaterThanOrEqualTo(superView).multipliedBy(0.4).priority(750);
-  }];
-  
-  [self.mobileView mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.top.mas_equalTo(self.logoView.mas_bottom);
-    make.leading.mas_equalTo(superView);
-    make.trailing.mas_equalTo(superView);
-    make.bottom.mas_equalTo(self.thirdPartyView.mas_top);
-    make.height.mas_greaterThanOrEqualTo(superView).multipliedBy(0.3).priority(750);
-  }];
-  
-  [self.thirdPartyView mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.bottom.mas_equalTo(self.mas_bottomLayoutGuide);
-    make.leading.mas_equalTo(superView);
-    make.trailing.mas_equalTo(superView);
-    make.top.mas_equalTo(self.mobileView.mas_bottom);
-    make.height.mas_greaterThanOrEqualTo(@120);
-    make.height.mas_greaterThanOrEqualTo(superView).multipliedBy(0.3).priority(750);
-  }];
-  
-  [super updateViewConstraints];
 }
 
 #pragma mark - Property Getters

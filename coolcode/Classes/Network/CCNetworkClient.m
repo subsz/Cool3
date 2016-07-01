@@ -4,7 +4,6 @@
 //
 
 #import "CCNetworkClient.h"
-#import <StarterKit/SKErrorResponseModel.h>
 
 @implementation SKHTTPSessionManager (NetworkClient)
 
