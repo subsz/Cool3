@@ -14,10 +14,15 @@
 
 @interface CCLoginLogoView ()
 
+// Logo
 @property (nonatomic, strong) UIImageView *logoImageView;
+// App 名称
 @property (nonatomic, strong) UILabel *appNameLabel;
+// 提示信息容器
 @property (nonatomic, strong) UIView *noticeContainerView;
+// 同意条款提示文字
 @property (nonatomic, strong) UILabel *agreeLabel;
+// 隐私条款按钮
 @property (nonatomic, strong) BFPaperButton *declarationBtn;
 
 @end
@@ -37,6 +42,8 @@
   [self addSubview:self.logoImageView];
   [self addSubview:self.appNameLabel];
   [self addSubview:self.noticeContainerView];
+  [self.noticeContainerView addSubview:self.agreeLabel];
+  [self.noticeContainerView addSubview:self.declarationBtn];
 }
 
 - (void)updateConstraints {
@@ -98,8 +105,6 @@
 - (UIView *)noticeContainerView {
   if (!_noticeContainerView) {
     _noticeContainerView = [[UIView alloc] init];
-    [_noticeContainerView addSubview:self.agreeLabel];
-    [_noticeContainerView addSubview:self.declarationBtn];
   }
   return _noticeContainerView;
 }

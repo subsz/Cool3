@@ -4,6 +4,25 @@
 //
 
 #import "CCMainViewController.h"
+#import "CCLoginViewController.h"
+
+@interface CCMainViewController ()
+
+@end
 
 @implementation CCMainViewController
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  
+  if (![self hasLogin]) {
+    CCLoginViewController *loginViewController = [[CCLoginViewController alloc] init];
+    [self presentViewController:loginViewController animated:NO completion:nil];
+  }
+}
+
+- (BOOL)hasLogin {
+  return NO;
+}
+
 @end

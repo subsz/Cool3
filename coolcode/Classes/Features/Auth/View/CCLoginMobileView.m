@@ -15,17 +15,20 @@
 
 @interface CCLoginMobileView ()
 
+// 国家代码按钮
 @property (nonatomic, strong) BFPaperButton *countryCodeBtn;
+// 手机号码输入框
 @property (nonatomic, strong) CCLoginMobileInputField *phoneNumField;
+// 登录按钮容器，用于垂直居中登录按钮
 @property (nonatomic, strong) UIView *mainLoginBtnContainerView;
+// 登录按钮
 @property (nonatomic, strong) BFPaperButton *mainLoginBtn;
 
 @end
 
 @implementation CCLoginMobileView
 
-- (instancetype)init
-{
+- (instancetype)init {
   self = [super init];
   if (self) {
     [self setupView];
@@ -38,6 +41,7 @@
   [self addSubview:self.countryCodeBtn];
   [self addSubview:self.phoneNumField];
   [self addSubview:self.mainLoginBtnContainerView];
+  [self.mainLoginBtnContainerView addSubview:self.mainLoginBtn];
 }
 
 - (void)updateConstraints {
@@ -99,6 +103,7 @@
     _phoneNumField.keyboardType = UIKeyboardTypeNumberPad;
     _phoneNumField.layer.borderColor = [[UIColor hx_colorWithHexString:@"#F5F5F5"] CGColor];
     _phoneNumField.layer.borderWidth = 1;
+    [_phoneNumField addTarget:self action:@selector(phoneNumFieldEditingChanged) forControlEvents:UIControlEventEditingChanged];
   }
   return _phoneNumField;
 }
@@ -106,7 +111,6 @@
 - (UIView *)mainLoginBtnContainerView {
   if (!_mainLoginBtnContainerView) {
     _mainLoginBtnContainerView = [[UIView alloc] init];
-    [_mainLoginBtnContainerView addSubview:self.mainLoginBtn];
   }
   return _mainLoginBtnContainerView;
 }
@@ -123,8 +127,31 @@
     [_mainLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_mainLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     [_mainLoginBtn setTitle:@"无需注册，快速登录" forState:UIControlStateNormal];
+    [_mainLoginBtn addTarget:self action:@selector(mainLoginBtnClicked) forControlEvents:UIControlEventTouchUpInside];
   }
   return _mainLoginBtn;
+}
+
+#pragma mark - Events
+
+- (void)phoneNumFieldEditingChanged {
+  if (self.phoneNumField.text.length > 0) {
+    self.mainLoginBtn.userInteractionEnabled = YES;
+    [self.mainLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.mainLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    self.mainLoginBtn.backgroundColor = [UIColor grayColor];
+  } else {
+    self.mainLoginBtn.userInteractionEnabled = NO;
+    [self.mainLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.mainLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    self.mainLoginBtn.backgroundColor = [UIColor hx_colorWithHexString:@"#DCDCDC"];
+  }
+}
+
+- (void)mainLoginBtnClicked {
+  if (self.delegate && [self.delegate respondsToSelector:@selector(mainLoginBtnClicked:phoneNum:)]) {
+    [self.delegate mainLoginBtnClicked:self.mainLoginBtn phoneNum:self.phoneNumField.text];
+  }
 }
 
 @end

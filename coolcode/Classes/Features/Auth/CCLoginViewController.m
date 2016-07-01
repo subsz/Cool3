@@ -2,19 +2,26 @@
 // Created by 杨玉刚 on 6/29/16.
 // Copyright (c) 2016 奇迹科技. All rights reserved.
 //
-
+#import <PromiseKit/AnyPromise.h>
 #import "CCLoginViewController.h"
 #import "CCLoginThirdPartyView.h"
 #import "CCLoginMobileView.h"
 #import "CCLoginLogoView.h"
 #import "UIColor+CC.h"
 #import "Masonry.h"
+#import <StarterKit/SKToastUtil.h>
+#import <StarterKit/SKErrorResponseModel.h>
+#import <Overcoat/Overcoat.h>
+#import "CCNetworkClient.h"
 
-@interface CCLoginViewController ()
+
+@interface CCLoginViewController () <CCLoginMobileViewDelegate>
 
 @property (nonatomic, strong) CCLoginLogoView *logoView;
 @property (nonatomic, strong) CCLoginMobileView *mobileView;
 @property (nonatomic, strong) CCLoginThirdPartyView *thirdPartyView;
+
+@property (nonatomic, strong) SKHTTPSessionManager *sessionManager;
 
 @end
 
@@ -61,6 +68,15 @@
   [super updateViewConstraints];
 }
 
+#pragma mark - Property Getters
+
+- (SKHTTPSessionManager *)sessionManager {
+  if (!_sessionManager) {
+    _sessionManager = [[SKHTTPSessionManager alloc] init];
+  }
+  return _sessionManager;
+}
+
 #pragma mark - Subviews
 
 - (CCLoginLogoView *)logoView {
@@ -73,6 +89,7 @@
 - (CCLoginMobileView *)mobileView {
   if (!_mobileView) {
     _mobileView = [[CCLoginMobileView alloc] init];
+    _mobileView.delegate = self;
   }
   return _mobileView;
 }
@@ -84,6 +101,7 @@
   return _thirdPartyView;
 }
 
+
 #pragma mark - Events
 
 /**
@@ -94,6 +112,24 @@
  */
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
   [self.view endEditing:YES];
+}
+
+- (void)mainLoginBtnClicked:(UIButton *)mainLoginBtn phoneNum:(NSString *)phoneNum{
+  // 键盘不收起的话会挡住下面的 Toast, 暂时先这么写
+  [self.view endEditing:YES];
+  if (phoneNum.length != 11) {
+    [SKToastUtil toastWithText:@"手机号码不合要求"];
+    return;
+  }
+
+  [self.sessionManager sendCaptcha:phoneNum].then(^(OVCResponse * response) {
+//    SKErrorResponseModel *model = response.result;
+    
+  }).catch(^(NSError *error) {
+    
+  }).finally(^{
+  
+  });
 }
 
 @end

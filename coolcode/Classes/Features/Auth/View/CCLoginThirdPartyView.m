@@ -13,11 +13,17 @@
 
 @interface CCLoginThirdPartyView()
 
+// 内容容器，用于垂直居中
 @property (nonatomic, strong) UIView   *contentContainerView;
+// 社交账号登录文字标签
 @property (nonatomic, strong) UILabel  *textLabel;
+// 微信按钮
 @property (nonatomic, strong) UIButton *wechatBtn;
+// QQ 按钮
 @property (nonatomic, strong) UIButton *qqBtn;
+// Facebook 按钮
 @property (nonatomic, strong) UIButton *facebookBtn;
+// Twitter 按钮
 @property (nonatomic, strong) UIButton *twitterBtn;
 
 @end
@@ -103,7 +109,7 @@
 - (UIButton *)wechatBtn {
   if (!_wechatBtn) {
     _wechatBtn = [[UIButton alloc] init];
-    _wechatBtn.layer.cornerRadius = 55.5/2;
+    _wechatBtn.layer.cornerRadius = 60/2;
     _wechatBtn.clipsToBounds = YES;
     [_wechatBtn setImage:[UIImage imageNamed:@"ic_social_wechat.pdf"] forState:UIControlStateNormal];
   }
@@ -113,7 +119,7 @@
 - (UIButton *)qqBtn {
   if (!_qqBtn) {
     _qqBtn = [[UIButton alloc] init];
-    _qqBtn.layer.cornerRadius = 55.5/2;
+    _qqBtn.layer.cornerRadius = 60/2;
     _qqBtn.clipsToBounds = YES;
     [_qqBtn setImage:[UIImage imageNamed:@"ic_social_qq.pdf"] forState:UIControlStateNormal];
   }
@@ -123,7 +129,7 @@
 - (UIButton *)facebookBtn {
   if (!_facebookBtn) {
     _facebookBtn = [[UIButton alloc] init];
-    _facebookBtn.layer.cornerRadius = 55.5/2;
+    _facebookBtn.layer.cornerRadius = 60/2;
     _facebookBtn.clipsToBounds = YES;
     [_facebookBtn setImage:[UIImage imageNamed:@"ic_social_facebook.pdf"] forState:UIControlStateNormal];
   }
@@ -133,7 +139,7 @@
 - (UIButton *)twitterBtn {
   if (!_twitterBtn) {
     _twitterBtn = [[UIButton alloc] init];
-    _twitterBtn.layer.cornerRadius = 55.5/2;
+    _twitterBtn.layer.cornerRadius = 60/2;
     _twitterBtn.clipsToBounds = YES;
     [_twitterBtn setImage:[UIImage imageNamed:@"ic_social_twitter.pdf"] forState:UIControlStateNormal];
   }

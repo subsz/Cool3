@@ -7,4 +7,6 @@
 
 @interface SKHTTPSessionManager (NetworkClient)
 
+- (AnyPromise *)sendCaptcha:(NSString *)phoneNum;
+
 @end

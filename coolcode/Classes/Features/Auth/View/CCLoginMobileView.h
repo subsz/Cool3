@@ -8,6 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CCLoginMobileViewDelegate <NSObject>
+
+@required
+
+/**
+ 登陆页登录按钮被点击
+ @param mainLoginBtn 登录按钮
+ @param phoneNum 用户输入的手机号码
+ */
+- (void)mainLoginBtnClicked:(UIButton *)mainLoginBtn phoneNum:(NSString *)phoneNum;
+
+@end
+
 @interface CCLoginMobileView : UIView
+
+@property (nonatomic, strong) id<CCLoginMobileViewDelegate> delegate;
 
 @end

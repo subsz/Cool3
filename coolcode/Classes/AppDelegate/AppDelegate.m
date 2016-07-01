@@ -11,7 +11,9 @@
 #import "UIColor+CC.h"
 #import "Profile.h"
 #import "CCMainViewController.h"
-
+//#if DEBUG
+#import <FLEX/FLEXManager.h>
+//#endif
 @interface AppDelegate ()
 
 @end
@@ -31,8 +33,15 @@
 
   CCMainViewController *mainViewController = [CCMainViewController new];
   self.window.rootViewController = mainViewController;
-
+  [self setupFLEXManager];
   return YES;
+}
+
+// 初始化 debug 工具
+- (void)setupFLEXManager {
+#ifdef DEBUG
+  [[FLEXManager sharedManager] showExplorer];
+#endif
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

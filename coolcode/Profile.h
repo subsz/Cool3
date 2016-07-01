@@ -9,7 +9,7 @@
 #ifndef Profile_h
 #define Profile_h
 
-static NSString *const kBaseURL = @"http://miaomiaoapi.wodetiku.com/";
+static NSString *const kBaseURL = @"http://coolcodeapi.wodetiku.com/";
 static NSString *const kAccept = @"application/vnd.coolcode.v1+json";
 
 #endif /* Profile_h */
