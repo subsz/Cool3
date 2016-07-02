@@ -36,7 +36,7 @@
 }
 
 - (void)updateViewConstraints {
-  // 增加 BOOL 类型的 didSetupConstraints，保证调用此方法事只更新一次约束。避免重复设置相同的约束。
+  // 增加 BOOL 类型的 didSetupConstraints，保证调用此方法只设置一次约束。避免重复设置相同的约束。
   if (!self.didSetupConstraints) {
     self.didSetupConstraints = YES;
     UIView *superView = self.view;

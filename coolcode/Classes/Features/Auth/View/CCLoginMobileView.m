@@ -20,6 +20,7 @@ CGFloat const kMainLoginBtnMaxHeight = 50;
 CGFloat const kMainLoginBtnMinHeight = 40;
 
 @interface CCLoginMobileView ()
+@property (nonatomic, assign) BOOL didSetupConstraints;
 
 // 国家代码按钮
 @property (nonatomic, strong) BFPaperButton *countryCodeBtn;
@@ -51,40 +52,42 @@ CGFloat const kMainLoginBtnMinHeight = 40;
 }
 
 - (void)updateConstraints {
-  
-  [self.countryCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.leading.mas_equalTo(self).offset(-1);
-    make.top.mas_equalTo(self);
-    make.height.mas_equalTo(kPhoneNumFieldHeightRatio * kScreenHeight).priority(750);
-    make.height.mas_lessThanOrEqualTo(kPhoneNumFieldMaxHeight);
-    make.height.mas_greaterThanOrEqualTo(kPhoneNumFieldMinHeight);
-    make.width.mas_equalTo(self).multipliedBy(0.27);
-  }];
-  
-  [self.phoneNumField mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.leading.mas_equalTo(self.countryCodeBtn.mas_trailing).offset(-1);
-    make.trailing.mas_equalTo(self).offset(1);
-    make.top.mas_equalTo(self.countryCodeBtn);
-    make.bottom.mas_equalTo(self.countryCodeBtn);
-  }];
-  
-  [self.mainLoginBtnContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.leading.mas_equalTo(self);
-    make.trailing.mas_equalTo(self);
-    make.top.mas_equalTo(self.countryCodeBtn.mas_bottom);
-    make.bottom.mas_equalTo(self);
-  }];
-  
-  [self.mainLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.height.mas_equalTo(kMainLoginBtnHeightRatio * kScreenHeight).priority(750);
-    make.height.mas_lessThanOrEqualTo(kMainLoginBtnMaxHeight);
-    make.height.mas_greaterThanOrEqualTo(kMainLoginBtnMinHeight);
-    make.width.mas_equalTo(self).multipliedBy(0.7);
-    make.centerX.mas_equalTo(self.mainLoginBtnContainerView);
-    make.centerY.mas_equalTo(self.mainLoginBtnContainerView);
-  }];
-  
-  [super updateConstraints];
+  if (!self.didSetupConstraints) {
+    self.didSetupConstraints = YES;
+    [self.countryCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+      make.leading.mas_equalTo(self).offset(-1);
+      make.top.mas_equalTo(self);
+      make.height.mas_equalTo(kPhoneNumFieldHeightRatio * kScreenHeight).priority(750);
+      make.height.mas_lessThanOrEqualTo(kPhoneNumFieldMaxHeight);
+      make.height.mas_greaterThanOrEqualTo(kPhoneNumFieldMinHeight);
+      make.width.mas_equalTo(self).multipliedBy(0.27);
+    }];
+    
+    [self.phoneNumField mas_makeConstraints:^(MASConstraintMaker *make) {
+      make.leading.mas_equalTo(self.countryCodeBtn.mas_trailing).offset(-1);
+      make.trailing.mas_equalTo(self).offset(1);
+      make.top.mas_equalTo(self.countryCodeBtn);
+      make.bottom.mas_equalTo(self.countryCodeBtn);
+    }];
+    
+    [self.mainLoginBtnContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
+      make.leading.mas_equalTo(self);
+      make.trailing.mas_equalTo(self);
+      make.top.mas_equalTo(self.countryCodeBtn.mas_bottom);
+      make.bottom.mas_equalTo(self);
+    }];
+    
+    [self.mainLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+      make.height.mas_equalTo(kMainLoginBtnHeightRatio * kScreenHeight).priority(750);
+      make.height.mas_lessThanOrEqualTo(kMainLoginBtnMaxHeight);
+      make.height.mas_greaterThanOrEqualTo(kMainLoginBtnMinHeight);
+      make.width.mas_equalTo(self).multipliedBy(0.7);
+      make.centerX.mas_equalTo(self.mainLoginBtnContainerView);
+      make.centerY.mas_equalTo(self.mainLoginBtnContainerView);
+    }];
+    
+    [super updateConstraints];
+  }
 }
 
 #pragma mark - Subviews

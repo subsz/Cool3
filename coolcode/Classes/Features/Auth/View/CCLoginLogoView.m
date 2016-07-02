@@ -10,7 +10,7 @@
 #import <BFPaperButton/BFPaperButton.h>
 
 @interface CCLoginLogoView ()
-
+@property (nonatomic, assign) BOOL didSetupConstraints;
 // Logo
 @property (nonatomic, strong) UIImageView *logoImageView;
 // App 名称
@@ -46,40 +46,42 @@
 }
 
 - (void)updateConstraints {
-  
-  [self.logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.centerX.mas_equalTo(self);
-    make.top.mas_equalTo(self).offset(50).priority(250);
-    make.top.mas_greaterThanOrEqualTo(self).offset(10).priority(250);
-    make.width.mas_equalTo(self).multipliedBy(0.27).priority(750);
-    make.width.mas_lessThanOrEqualTo(150);
-    make.height.mas_equalTo(self.logoImageView.mas_width).multipliedBy(0.9);
-  }];
-  
-  [self.appNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.centerX.mas_equalTo(self);
-    make.top.mas_equalTo(self.logoImageView.mas_bottom).offset(20).priority(250);
-    make.top.mas_greaterThanOrEqualTo(self.logoImageView.mas_bottom).offset(10);
-  }];
-  
-  [self.noticeContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.centerX.mas_equalTo(self);
-    make.height.equalTo(@16);
-    make.bottom.mas_equalTo(self).offset(-13).priority(250);
-    make.bottom.mas_lessThanOrEqualTo(self).offset(-5);
-    make.top.mas_greaterThanOrEqualTo(self.appNameLabel.mas_bottom).offset(10);
-  }];
-  
-  [self.agreeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.centerY.mas_equalTo(self.noticeContainerView);
-    make.leading.mas_equalTo(self.noticeContainerView);
-  }];
-  
-  [self.declarationBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.centerY.mas_equalTo(self.noticeContainerView);
-    make.leading.mas_equalTo(self.agreeLabel.mas_trailing);
-    make.trailing.mas_equalTo(self.noticeContainerView);
-  }];
+  if (!self.didSetupConstraints) {
+    self.didSetupConstraints = YES;
+    [self.logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+      make.centerX.mas_equalTo(self);
+      make.top.mas_equalTo(self).offset(50).priority(250);
+      make.top.mas_greaterThanOrEqualTo(self).offset(10).priority(250);
+      make.width.mas_equalTo(self).multipliedBy(0.27).priority(750);
+      make.width.mas_lessThanOrEqualTo(150);
+      make.height.mas_equalTo(self.logoImageView.mas_width).multipliedBy(0.9);
+    }];
+    
+    [self.appNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+      make.centerX.mas_equalTo(self);
+      make.top.mas_equalTo(self.logoImageView.mas_bottom).offset(20).priority(250);
+      make.top.mas_greaterThanOrEqualTo(self.logoImageView.mas_bottom).offset(10);
+    }];
+    
+    [self.noticeContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
+      make.centerX.mas_equalTo(self);
+      make.height.equalTo(@16);
+      make.bottom.mas_equalTo(self).offset(-13).priority(250);
+      make.bottom.mas_lessThanOrEqualTo(self).offset(-5);
+      make.top.mas_greaterThanOrEqualTo(self.appNameLabel.mas_bottom).offset(10);
+    }];
+    
+    [self.agreeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+      make.centerY.mas_equalTo(self.noticeContainerView);
+      make.leading.mas_equalTo(self.noticeContainerView);
+    }];
+    
+    [self.declarationBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+      make.centerY.mas_equalTo(self.noticeContainerView);
+      make.leading.mas_equalTo(self.agreeLabel.mas_trailing);
+      make.trailing.mas_equalTo(self.noticeContainerView);
+    }];
+  }
   
   [super updateConstraints];
 }

@@ -16,7 +16,7 @@ CGFloat const kThirdPartyLoginBtnWithoutEdgeWidthRatio = 0.133;
 CGFloat const kThirdPartyLoginBtnMaxWidth = 85;
 
 @interface CCLoginThirdPartyView()
-
+@property (nonatomic, assign) BOOL didSetupConstraints;
 // 内容容器，用于垂直居中
 @property (nonatomic, strong) UIView   *contentContainerView;
 // 社交账号登录文字标签
@@ -55,50 +55,52 @@ CGFloat const kThirdPartyLoginBtnMaxWidth = 85;
 }
 
 - (void)updateConstraints {
-  
-  // 第三方登录按钮的切图四周有透明边界，
-  // 在这里进行一些额外的计算以尽可能的去除这些透明边界的影响。
-  CGFloat btnWidthWithoutEdge = kScreenWidth * kThirdPartyLoginBtnWithoutEdgeWidthRatio;
-  btnWidthWithoutEdge = btnWidthWithoutEdge > kThirdPartyLoginBtnMaxWidth ? kThirdPartyLoginBtnMaxWidth : btnWidthWithoutEdge;
-  CGFloat btnTransparentEdgeWidth = (btnWidthWithoutEdge * (kThirdPartyLoginBtnWithEdgeWidthRatio / kThirdPartyLoginBtnWithoutEdgeWidthRatio) - btnWidthWithoutEdge) * 0.5;
-  
-  [self.contentContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.leading.mas_equalTo(self);
-    make.trailing.mas_equalTo(self);
-    make.centerY.mas_equalTo(self);
-    make.height.mas_equalTo(btnWidthWithoutEdge * 1.5 + 35);
-  }];
-  
-  [self.textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.centerX.mas_equalTo(self.contentContainerView);
-    make.top.mas_equalTo(self.contentContainerView);
-  }];
-  
-  [self.wechatBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.right.mas_equalTo(self.qqBtn.mas_left).offset(btnWidthWithoutEdge * -0.5 + btnTransparentEdgeWidth * 2);
-    make.centerY.mas_equalTo(self.qqBtn);
-    make.size.mas_equalTo(self.qqBtn);
-  }];
-  
-  [self.qqBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.right.mas_equalTo(self.contentContainerView.mas_centerX).offset(btnWidthWithoutEdge * -0.25 + btnTransparentEdgeWidth);
-    make.top.mas_equalTo(self.textLabel.mas_bottom).offset(btnWidthWithoutEdge * 0.5 - btnTransparentEdgeWidth);
-    make.width.mas_equalTo(self.contentContainerView).multipliedBy(kThirdPartyLoginBtnWithEdgeWidthRatio).priority(950);
-    make.width.mas_lessThanOrEqualTo(kThirdPartyLoginBtnMaxWidth);
-    make.height.mas_equalTo(self.qqBtn.mas_width);
-  }];
-  
-  [self.facebookBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.left.mas_equalTo(self.contentContainerView.mas_centerX).offset(btnWidthWithoutEdge * 0.25 - btnTransparentEdgeWidth);
-    make.centerY.mas_equalTo(self.qqBtn);
-    make.size.mas_equalTo(self.qqBtn);
-  }];
-  
-  [self.twitterBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.left.mas_equalTo(self.facebookBtn.mas_right).offset(btnWidthWithoutEdge * 0.5 - btnTransparentEdgeWidth * 2);
-    make.centerY.mas_equalTo(self.qqBtn);
-    make.size.mas_equalTo(self.qqBtn);
-  }];
+  if (!self.didSetupConstraints) {
+    self.didSetupConstraints = YES;
+    // 第三方登录按钮的切图四周有透明边界，
+    // 在这里进行一些额外的计算以尽可能的去除这些透明边界的影响。
+    CGFloat btnWidthWithoutEdge = kScreenWidth * kThirdPartyLoginBtnWithoutEdgeWidthRatio;
+    btnWidthWithoutEdge = btnWidthWithoutEdge > kThirdPartyLoginBtnMaxWidth ? kThirdPartyLoginBtnMaxWidth : btnWidthWithoutEdge;
+    CGFloat btnTransparentEdgeWidth = (btnWidthWithoutEdge * (kThirdPartyLoginBtnWithEdgeWidthRatio / kThirdPartyLoginBtnWithoutEdgeWidthRatio) - btnWidthWithoutEdge) * 0.5;
+    
+    [self.contentContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
+      make.leading.mas_equalTo(self);
+      make.trailing.mas_equalTo(self);
+      make.centerY.mas_equalTo(self);
+      make.height.mas_equalTo(btnWidthWithoutEdge * 1.5 + 35);
+    }];
+    
+    [self.textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+      make.centerX.mas_equalTo(self.contentContainerView);
+      make.top.mas_equalTo(self.contentContainerView);
+    }];
+    
+    [self.wechatBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+      make.right.mas_equalTo(self.qqBtn.mas_left).offset(btnWidthWithoutEdge * -0.5 + btnTransparentEdgeWidth * 2);
+      make.centerY.mas_equalTo(self.qqBtn);
+      make.size.mas_equalTo(self.qqBtn);
+    }];
+    
+    [self.qqBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+      make.right.mas_equalTo(self.contentContainerView.mas_centerX).offset(btnWidthWithoutEdge * -0.25 + btnTransparentEdgeWidth);
+      make.top.mas_equalTo(self.textLabel.mas_bottom).offset(btnWidthWithoutEdge * 0.5 - btnTransparentEdgeWidth);
+      make.width.mas_equalTo(self.contentContainerView).multipliedBy(kThirdPartyLoginBtnWithEdgeWidthRatio).priority(950);
+      make.width.mas_lessThanOrEqualTo(kThirdPartyLoginBtnMaxWidth);
+      make.height.mas_equalTo(self.qqBtn.mas_width);
+    }];
+    
+    [self.facebookBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+      make.left.mas_equalTo(self.contentContainerView.mas_centerX).offset(btnWidthWithoutEdge * 0.25 - btnTransparentEdgeWidth);
+      make.centerY.mas_equalTo(self.qqBtn);
+      make.size.mas_equalTo(self.qqBtn);
+    }];
+    
+    [self.twitterBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+      make.left.mas_equalTo(self.facebookBtn.mas_right).offset(btnWidthWithoutEdge * 0.5 - btnTransparentEdgeWidth * 2);
+      make.centerY.mas_equalTo(self.qqBtn);
+      make.size.mas_equalTo(self.qqBtn);
+    }];
+  }
   
   [super updateConstraints];
 }
