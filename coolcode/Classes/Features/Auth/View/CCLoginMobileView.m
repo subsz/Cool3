@@ -135,7 +135,12 @@
 #pragma mark - Events
 
 - (void)phoneNumFieldEditingChanged {
-  if (self.phoneNumField.text.length == 11) {
+  if (self.phoneNumField.text.length >= 11) {
+    // 输入的手机号码位数超过11位也只显示11位。
+    if (self.phoneNumField.text.length > 11) {
+      self.phoneNumField.text = [self.phoneNumField.text substringToIndex:11];
+    }
+    
     self.mainLoginBtn.userInteractionEnabled = YES;
     [self.mainLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.mainLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
