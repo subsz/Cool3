@@ -14,7 +14,9 @@
 
 // 如果项目中大部分文件都需要导入相同的头文件，可以考虑把这些需要导入的文件放到 .pch 文件中。如果滥用 .pch 文件，将大量的头文件都放到此文件中，会大大增加项目编译时间。
 
+#import "Common.h"
 #import "UIColor+CC.h"
+#import <HexColors/HexColors.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <StarterKit/SKToastUtil.h>
 #import <StarterKit/SKErrorResponseModel.h>

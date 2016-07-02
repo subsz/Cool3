@@ -8,10 +8,16 @@
 
 #import "CCLoginMobileView.h"
 #import "CCLoginMobileInputField.h"
-#import "UIColor+CC.h"
-#import <HexColors/HexColors.h>
-#import "Masonry.h"
 #import <BFPaperButton/BFPaperButton.h>
+
+// 手机输入框相对于屏幕高度的比例及最大最小高度
+CGFloat const kPhoneNumFieldHeightRatio = 0.105;
+CGFloat const kPhoneNumFieldMaxHeight = 70;
+CGFloat const kPhoneNumFieldMinHeight = 50;
+// 手机输入框相对于屏幕高度的比例及最大最小高度
+CGFloat const kMainLoginBtnHeightRatio = 0.075;
+CGFloat const kMainLoginBtnMaxHeight = 50;
+CGFloat const kMainLoginBtnMinHeight = 40;
 
 @interface CCLoginMobileView ()
 
@@ -49,8 +55,10 @@
   [self.countryCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
     make.leading.mas_equalTo(self).offset(-1);
     make.top.mas_equalTo(self);
-    make.height.equalTo(@70);
-    make.width.equalTo(@100);
+    make.height.mas_equalTo(kPhoneNumFieldHeightRatio * kScreenHeight).priority(750);
+    make.height.mas_lessThanOrEqualTo(kPhoneNumFieldMaxHeight);
+    make.height.mas_greaterThanOrEqualTo(kPhoneNumFieldMinHeight);
+    make.width.mas_equalTo(self).multipliedBy(0.27);
   }];
   
   [self.phoneNumField mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -68,9 +76,11 @@
   }];
   
   [self.mainLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.height.equalTo(@50);
-    make.leading.mas_equalTo(self.mainLoginBtnContainerView).offset(55);
-    make.trailing.mas_equalTo(self.mainLoginBtnContainerView).offset(-55);
+    make.height.mas_equalTo(kMainLoginBtnHeightRatio * kScreenHeight).priority(750);
+    make.height.mas_lessThanOrEqualTo(kMainLoginBtnMaxHeight);
+    make.height.mas_greaterThanOrEqualTo(kMainLoginBtnMinHeight);
+    make.width.mas_equalTo(self).multipliedBy(0.7);
+    make.centerX.mas_equalTo(self.mainLoginBtnContainerView);
     make.centerY.mas_equalTo(self.mainLoginBtnContainerView);
   }];
   
@@ -86,7 +96,7 @@
     _countryCodeBtn.shadowColor = [UIColor clearColor];
     [_countryCodeBtn setTitle:@"+86" forState:UIControlStateNormal];
     
-    [_countryCodeBtn setTitleFont:[UIFont systemFontOfSize:18]];
+    [_countryCodeBtn setTitleFont:[UIFont systemFontOfSize:[self fontSizeForPhoneNum]]];
     [_countryCodeBtn setTitleColor:[UIColor hx_colorWithHexString:@"#787878"] forState:UIControlStateNormal];
     [_countryCodeBtn setTitleColor:[UIColor hx_colorWithHexString:@"#787878"] forState:UIControlStateHighlighted];
     _countryCodeBtn.layer.borderColor = [[UIColor hx_colorWithHexString:@"#F5F5F5"] CGColor];
@@ -99,7 +109,7 @@
   if (!_phoneNumField) {
     _phoneNumField = [[CCLoginMobileInputField alloc] init];
     _phoneNumField.placeholder = @"输入手机号";
-    _phoneNumField.font = [UIFont systemFontOfSize:18];
+    _phoneNumField.font = [UIFont systemFontOfSize:[self fontSizeForPhoneNum]];
     _phoneNumField.keyboardType = UIKeyboardTypeNumberPad;
     _phoneNumField.layer.borderColor = [[UIColor hx_colorWithHexString:@"#F5F5F5"] CGColor];
     _phoneNumField.layer.borderWidth = 1;
@@ -119,9 +129,13 @@
   if (!_mainLoginBtn) {
     _mainLoginBtn = [[BFPaperButton alloc] init];
     _mainLoginBtn.layer.masksToBounds = YES;
-    _mainLoginBtn.layer.cornerRadius = 48 * 0.5;
+    
+    CGFloat mainLoginBtnGuessWidth = kScreenHeight * kMainLoginBtnHeightRatio;
+    mainLoginBtnGuessWidth = mainLoginBtnGuessWidth > kMainLoginBtnMaxHeight ? kMainLoginBtnMaxHeight : (mainLoginBtnGuessWidth < kMainLoginBtnMinHeight ? kMainLoginBtnMinHeight : mainLoginBtnGuessWidth);
+    _mainLoginBtn.layer.cornerRadius = mainLoginBtnGuessWidth * 0.5;
+
     _mainLoginBtn.shadowColor = [UIColor clearColor];
-    [_mainLoginBtn setTitleFont:[UIFont systemFontOfSize:16 weight:500]];
+    [_mainLoginBtn setTitleFont:[UIFont systemFontOfSize:[self fontSizeForMainLoginBtn] weight:500]];
     _mainLoginBtn.backgroundColor = [UIColor hx_colorWithHexString:@"#DCDCDC"];
     _mainLoginBtn.userInteractionEnabled = NO; //登录按钮默认不能点击
     [_mainLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -132,9 +146,26 @@
   return _mainLoginBtn;
 }
 
+#pragma mark - Subviews Font Size
+
+- (CGFloat)fontSizeForPhoneNum {
+  if (kScreenWidth <= kScreenWidthiPhone5) {
+    return 15;
+  }
+  return 17;
+}
+
+- (CGFloat)fontSizeForMainLoginBtn {
+  if (kScreenWidth <= kScreenWidthiPhone5) {
+    return 14;
+  }
+  return 16;
+}
+
 #pragma mark - Events
 
 - (void)phoneNumFieldEditingChanged {
+  
   if (self.phoneNumField.text.length >= 11) {
     // 输入的手机号码位数超过11位也只显示11位。
     if (self.phoneNumField.text.length > 11) {

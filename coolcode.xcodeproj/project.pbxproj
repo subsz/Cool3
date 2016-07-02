@@ -50,6 +50,7 @@
 		51FBE4E91D23B3960051F486 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		51FBE4EF1D23B9370051F486 /* Profile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
 		5658E03D6AEC423AE32AA2AD /* Pods_coolcode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_coolcode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3321AD51D27A0B800B3FF38 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		A3FC3C701D24C981006C480E /* CCLoginThirdPartyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCLoginThirdPartyView.h; path = View/CCLoginThirdPartyView.h; sourceTree = "<group>"; };
 		A3FC3C711D24C981006C480E /* CCLoginThirdPartyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCLoginThirdPartyView.m; path = View/CCLoginThirdPartyView.m; sourceTree = "<group>"; };
 		A3FC3C731D24E321006C480E /* CCLoginLogoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCLoginLogoView.h; path = View/CCLoginLogoView.h; sourceTree = "<group>"; };
@@ -130,6 +131,7 @@
 			children = (
 				22B963F300FAAA186B26B724 /* UIColor+CC.m */,
 				22B96DA09134E85A1987A899 /* UIColor+CC.h */,
+				A3321AD51D27A0B800B3FF38 /* Common.h */,
 			);
 			path = Util;
 			sourceTree = "<group>";

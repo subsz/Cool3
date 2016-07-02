@@ -46,7 +46,7 @@
       make.leading.mas_equalTo(superView);
       make.trailing.mas_equalTo(superView);
       make.height.equalTo(@250).priority(250);
-      make.height.mas_greaterThanOrEqualTo(superView).multipliedBy(0.4).priority(750);
+      make.height.mas_greaterThanOrEqualTo(superView).multipliedBy(0.38).priority(750);
     }];
     
     [self.mobileView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -54,7 +54,8 @@
       make.leading.mas_equalTo(superView);
       make.trailing.mas_equalTo(superView);
       make.bottom.mas_equalTo(self.thirdPartyView.mas_top);
-      make.height.mas_greaterThanOrEqualTo(superView).multipliedBy(0.3).priority(750);
+      make.height.mas_greaterThanOrEqualTo(superView).multipliedBy(0.31).priority(750);
+      make.height.mas_greaterThanOrEqualTo(110);
     }];
     
     [self.thirdPartyView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -62,8 +63,8 @@
       make.leading.mas_equalTo(superView);
       make.trailing.mas_equalTo(superView);
       make.top.mas_equalTo(self.mobileView.mas_bottom);
-      make.height.mas_greaterThanOrEqualTo(@120);
-      make.height.mas_greaterThanOrEqualTo(superView).multipliedBy(0.3).priority(750);
+      make.height.mas_greaterThanOrEqualTo(120);
+      make.height.mas_greaterThanOrEqualTo(superView).multipliedBy(0.31).priority(750);
     }];
   }
   [super updateViewConstraints];
@@ -136,17 +137,22 @@
 
 - (void)handleKeyboardNotification: (NSNotification *)notification {
   NSDictionary* userInfo = notification.userInfo;
-
+  
   // 获取键盘弹出动画的时间
   NSTimeInterval animationDuration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
   UIViewAnimationOptions animationCurve = [userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
   
   // 获取键盘弹出到的位置 Frame
+  CGRect keyboardScreenBeginFrame = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
   CGRect keyboardScreenEndFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
   
   // 更新Constraint
   [self.mobileView mas_updateConstraints:^(MASConstraintMaker *make) {
-    make.top.mas_lessThanOrEqualTo(self.mas_bottomLayoutGuide).offset(-70 - keyboardScreenEndFrame.size.height);
+    if (keyboardScreenBeginFrame.origin.y > keyboardScreenEndFrame.origin.y) {
+      make.bottom.mas_lessThanOrEqualTo(self.mas_bottomLayoutGuide).offset(-keyboardScreenEndFrame.size.height);
+    } else {
+      make.bottom.mas_lessThanOrEqualTo(self.mas_bottomLayoutGuide);
+    }
   }];
   [self.view setNeedsUpdateConstraints];
   

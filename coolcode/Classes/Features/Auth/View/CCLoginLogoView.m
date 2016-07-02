@@ -7,9 +7,6 @@
 //
 
 #import "CCLoginLogoView.h"
-#import "UIColor+CC.h"
-#import <HexColors/HexColors.h>
-#import "Masonry.h"
 #import <BFPaperButton/BFPaperButton.h>
 
 @interface CCLoginLogoView ()
@@ -41,8 +38,9 @@
 
 - (void)setupView {
   [self addSubview:self.logoImageView];
-  [self addSubview:self.appNameLabel];
   [self addSubview:self.noticeContainerView];
+  [self addSubview:self.appNameLabel];
+  
   [self.noticeContainerView addSubview:self.agreeLabel];
   [self.noticeContainerView addSubview:self.declarationBtn];
 }
@@ -52,8 +50,10 @@
   [self.logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
     make.centerX.mas_equalTo(self);
     make.top.mas_equalTo(self).offset(50).priority(250);
-    make.top.mas_greaterThanOrEqualTo(self).offset(10);
-    make.size.mas_equalTo(CGSizeMake(100, 90));
+    make.top.mas_greaterThanOrEqualTo(self).offset(10).priority(250);
+    make.width.mas_equalTo(self).multipliedBy(0.27).priority(750);
+    make.width.mas_lessThanOrEqualTo(150);
+    make.height.mas_equalTo(self.logoImageView.mas_width).multipliedBy(0.9);
   }];
   
   [self.appNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -65,7 +65,8 @@
   [self.noticeContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
     make.centerX.mas_equalTo(self);
     make.height.equalTo(@16);
-    make.bottom.mas_equalTo(self).offset(-13);
+    make.bottom.mas_equalTo(self).offset(-13).priority(250);
+    make.bottom.mas_lessThanOrEqualTo(self).offset(-5);
     make.top.mas_greaterThanOrEqualTo(self.appNameLabel.mas_bottom).offset(10);
   }];
   
@@ -98,7 +99,8 @@
     _appNameLabel = [[UILabel alloc] init];
     _appNameLabel.text = @"词记";
     _appNameLabel.textColor = [UIColor hx_colorWithHexString:@"#86CD3E"];
-    _appNameLabel.font = [UIFont systemFontOfSize:23 weight:500];
+    
+    _appNameLabel.font = [UIFont systemFontOfSize:[self fontSizeForAppName] weight:500];
   }
   return _appNameLabel;
 }
@@ -115,7 +117,7 @@
     _agreeLabel = [[UILabel alloc] init];
     _agreeLabel.text = @"点击登录，即表示你同意";
     _agreeLabel.textColor = [UIColor hx_colorWithHexString:@"#B4B4B4"];
-    _agreeLabel.font = [UIFont systemFontOfSize:13];
+    _agreeLabel.font = [UIFont systemFontOfSize:[self fontSizeForNotice]];
     _agreeLabel.textAlignment = NSTextAlignmentRight;
   }
   return _agreeLabel;
@@ -127,12 +129,28 @@
     _declarationBtn.layer.masksToBounds = YES;
     _declarationBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     _declarationBtn.shadowColor = [UIColor clearColor];
-    [_declarationBtn setTitleFont:[UIFont systemFontOfSize:13]];
+    [_declarationBtn setTitleFont:[UIFont systemFontOfSize:[self fontSizeForNotice]]];
     [_declarationBtn setTitleColor:[UIColor hx_colorWithHexString:@"#86CD3E"] forState:UIControlStateNormal];
     [_declarationBtn setTitleColor:[UIColor hx_colorWithHexString:@"#86CD3E"] forState:UIControlStateHighlighted];
     [_declarationBtn setTitle:@"《法律声明及隐私政策》" forState:UIControlStateNormal];
   }
   return _declarationBtn;
+}
+
+#pragma mark - Subviews Font Size
+
+- (CGFloat)fontSizeForAppName {
+  if (kScreenWidth <= kScreenWidthiPhone5) {
+    return 21;
+  }
+  return 23;
+}
+
+- (CGFloat)fontSizeForNotice {
+  if (kScreenWidth <= kScreenWidthiPhone5) {
+    return 12;
+  }
+  return 13;
 }
 
 @end
