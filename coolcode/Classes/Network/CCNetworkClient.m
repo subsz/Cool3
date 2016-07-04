@@ -5,11 +5,16 @@
 
 #import "CCNetworkClient.h"
 
-
 @implementation SKHTTPSessionManager (NetworkClient)
 
+- (AnyPromise *)sendCaptcha:(NSString *)mobile {
+  return [self pmk_POST:@"captcha/send/mobile" parameters:@{@"mobile" : mobile}];
+}
+
 + (NSDictionary *)modelClassesByResourcePath {
-  return @{};
+  return @{
+           @"captcha/send/mobile" : [SKErrorResponseModel class],
+           };
 }
 
 @end

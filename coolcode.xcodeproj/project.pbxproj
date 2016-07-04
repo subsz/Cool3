@@ -19,7 +19,10 @@
 		22B96E2656AEFD1A33836C16 /* CCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B9643AEAD7C2E19D900BA3 /* CCViewController.m */; };
 		51FBE4DA1D23B3960051F486 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 51FBE4D91D23B3960051F486 /* main.m */; };
 		51FBE4E51D23B3960051F486 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51FBE4E41D23B3960051F486 /* Assets.xcassets */; };
-		51FBE4E81D23B3960051F486 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51FBE4E61D23B3960051F486 /* LaunchScreen.storyboard */; };
+		A3FC3C721D24C981006C480E /* CCLoginThirdPartyView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FC3C711D24C981006C480E /* CCLoginThirdPartyView.m */; };
+		A3FC3C751D24E321006C480E /* CCLoginLogoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FC3C741D24E321006C480E /* CCLoginLogoView.m */; };
+		A3FC3C781D24EEE4006C480E /* CCLoginMobileView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FC3C771D24EEE4006C480E /* CCLoginMobileView.m */; };
+		A3FC3C7B1D250D7C006C480E /* CCLoginMobileInputField.m in Sources */ = {isa = PBXBuildFile; fileRef = A3FC3C7A1D250D7C006C480E /* CCLoginMobileInputField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,10 +47,19 @@
 		51FBE4D51D23B3950051F486 /* coolcode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = coolcode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51FBE4D91D23B3960051F486 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		51FBE4E41D23B3960051F486 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		51FBE4E71D23B3960051F486 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		51FBE4E91D23B3960051F486 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		51FBE4EF1D23B9370051F486 /* Profile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
 		5658E03D6AEC423AE32AA2AD /* Pods_coolcode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_coolcode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3321AD51D27A0B800B3FF38 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		A3FC3C701D24C981006C480E /* CCLoginThirdPartyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCLoginThirdPartyView.h; path = View/CCLoginThirdPartyView.h; sourceTree = "<group>"; };
+		A3FC3C711D24C981006C480E /* CCLoginThirdPartyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCLoginThirdPartyView.m; path = View/CCLoginThirdPartyView.m; sourceTree = "<group>"; };
+		A3FC3C731D24E321006C480E /* CCLoginLogoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCLoginLogoView.h; path = View/CCLoginLogoView.h; sourceTree = "<group>"; };
+		A3FC3C741D24E321006C480E /* CCLoginLogoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCLoginLogoView.m; path = View/CCLoginLogoView.m; sourceTree = "<group>"; };
+		A3FC3C761D24EEE4006C480E /* CCLoginMobileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCLoginMobileView.h; path = View/CCLoginMobileView.h; sourceTree = "<group>"; };
+		A3FC3C771D24EEE4006C480E /* CCLoginMobileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCLoginMobileView.m; path = View/CCLoginMobileView.m; sourceTree = "<group>"; };
+		A3FC3C791D250D7C006C480E /* CCLoginMobileInputField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCLoginMobileInputField.h; path = View/CCLoginMobileInputField.h; sourceTree = "<group>"; };
+		A3FC3C7A1D250D7C006C480E /* CCLoginMobileInputField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCLoginMobileInputField.m; path = View/CCLoginMobileInputField.m; sourceTree = "<group>"; };
+		A8D938A21D26D7BA002552A0 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		D6176837EFB6B4C554CC9897 /* Pods-coolcode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coolcode.debug.xcconfig"; path = "Pods/Target Support Files/Pods-coolcode/Pods-coolcode.debug.xcconfig"; sourceTree = "<group>"; };
 		E8DE751824EC16E6C9894BD6 /* Pods-coolcode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coolcode.release.xcconfig"; path = "Pods/Target Support Files/Pods-coolcode/Pods-coolcode.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,6 +97,7 @@
 		22B961D1DC9CC378BBE1F3B2 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				A3FC3C6F1D24C944006C480E /* View */,
 				22B96F986EBC62E0A1D7BE44 /* CCLoginViewController.m */,
 				22B96EF5DC275895924A0448 /* CCLoginViewController.h */,
 			);
@@ -118,6 +131,7 @@
 			children = (
 				22B963F300FAAA186B26B724 /* UIColor+CC.m */,
 				22B96DA09134E85A1987A899 /* UIColor+CC.h */,
+				A3321AD51D27A0B800B3FF38 /* Common.h */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -170,7 +184,9 @@
 				30AAF0DDBA5407D6BB6539EC /* Pods */,
 				F8D208F516C4379B452CBD68 /* Frameworks */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		51FBE4D61D23B3950051F486 /* Products */ = {
 			isa = PBXGroup;
@@ -184,7 +200,6 @@
 			isa = PBXGroup;
 			children = (
 				51FBE4E41D23B3960051F486 /* Assets.xcassets */,
-				51FBE4E61D23B3960051F486 /* LaunchScreen.storyboard */,
 				51FBE4E91D23B3960051F486 /* Info.plist */,
 				51FBE4D81D23B3960051F486 /* Supporting Files */,
 				22B96C62EECF3577F586A5DB /* Classes */,
@@ -197,8 +212,24 @@
 			children = (
 				51FBE4D91D23B3960051F486 /* main.m */,
 				51FBE4EF1D23B9370051F486 /* Profile.h */,
+				A8D938A21D26D7BA002552A0 /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A3FC3C6F1D24C944006C480E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A3FC3C701D24C981006C480E /* CCLoginThirdPartyView.h */,
+				A3FC3C711D24C981006C480E /* CCLoginThirdPartyView.m */,
+				A3FC3C731D24E321006C480E /* CCLoginLogoView.h */,
+				A3FC3C741D24E321006C480E /* CCLoginLogoView.m */,
+				A3FC3C761D24EEE4006C480E /* CCLoginMobileView.h */,
+				A3FC3C771D24EEE4006C480E /* CCLoginMobileView.m */,
+				A3FC3C791D250D7C006C480E /* CCLoginMobileInputField.h */,
+				A3FC3C7A1D250D7C006C480E /* CCLoginMobileInputField.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		F8D208F516C4379B452CBD68 /* Frameworks */ = {
@@ -238,6 +269,7 @@
 		51FBE4CD1D23B3950051F486 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = CC;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "奇迹科技";
 				TargetAttributes = {
@@ -269,7 +301,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51FBE4E81D23B3960051F486 /* LaunchScreen.storyboard in Resources */,
 				51FBE4E51D23B3960051F486 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,9 +360,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3FC3C721D24C981006C480E /* CCLoginThirdPartyView.m in Sources */,
 				51FBE4DA1D23B3960051F486 /* main.m in Sources */,
 				22B965C03EB949803DB4AAEE /* AppDelegate.m in Sources */,
+				A3FC3C7B1D250D7C006C480E /* CCLoginMobileInputField.m in Sources */,
 				22B966E7F0B1AEE915ADA99E /* CCMainViewController.m in Sources */,
+				A3FC3C781D24EEE4006C480E /* CCLoginMobileView.m in Sources */,
 				22B9656436727D3FC51F77AD /* CCView.m in Sources */,
 				22B96E2656AEFD1A33836C16 /* CCViewController.m in Sources */,
 				22B9633D05953BFFC4519401 /* CCTableViewCell.m in Sources */,
@@ -339,21 +373,11 @@
 				22B96A25BF967B8B2C878DBD /* CCModel.m in Sources */,
 				22B963A1D880B7137FEED1AE /* UIColor+CC.m in Sources */,
 				22B9604B1BB88D4DEFE414B0 /* CCNetworkClient.m in Sources */,
+				A3FC3C751D24E321006C480E /* CCLoginLogoView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		51FBE4E61D23B3960051F486 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				51FBE4E71D23B3960051F486 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		51FBE4EA1D23B3960051F486 /* Debug */ = {
@@ -393,7 +417,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -432,7 +456,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -445,7 +469,11 @@
 			baseConfigurationReference = D6176837EFB6B4C554CC9897 /* Pods-coolcode.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/coolcode/PrefixHeader.pch";
 				INFOPLIST_FILE = coolcode/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tech.qijitech.coolcode;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -457,7 +485,11 @@
 			baseConfigurationReference = E8DE751824EC16E6C9894BD6 /* Pods-coolcode.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/coolcode/PrefixHeader.pch";
 				INFOPLIST_FILE = coolcode/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tech.qijitech.coolcode;
 				PRODUCT_NAME = "$(TARGET_NAME)";
